@@ -13,7 +13,8 @@ import { createServer } from "http"
 
 ExpressApplication.make().then(
     ({ app, db }) => {
-        const port = normalizePort(AppConfig.port)
+        let port = process.env.PORT || AppConfig.port
+        port = normalizePort(port)
         app.set("port", port)
 
         const server = createServer(app)
